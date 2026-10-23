@@ -1,4 +1,4 @@
-const questions = [
+const QUESTIONS = [
     {
         id: 1,
         label: 'зелень'

@@ -9,8 +9,8 @@ function createMenuButton(question) {
     return questionLink
 }
 
-for (let i = 0; i < questions.length; i++) {
-    menu.appendChild(createMenuButton(questions[i]))
+for (let i = 0; i < QUESTIONS.length; i++) {
+    menu.appendChild(createMenuButton(QUESTIONS[i]))
 }
 
 $('#app').appendChild(menu)

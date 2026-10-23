@@ -2,9 +2,21 @@ const gameState = {
     level: undefined,
 }
 
+const question = document.createElement('div')
+
+const questionImg = document.createElement('img')
+question.appendChild(questionImg)
+
+const gameBoard = document.createElement('div')
+gameBoard.classList.add('game-board')
+
+gameBoard.appendChild(question)
+
+$('#app').appendChild(gameBoard)
+
 function setLevel(level) {
     gameState.level = {
-        question: questions[level],
+        question: QUESTIONS[level],
         id: 1
     }
 

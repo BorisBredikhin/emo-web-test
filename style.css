@@ -1,52 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;500;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;500;600;700&display=swap");
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #57e3f7;
+  margin: 0;
+  padding: 0;
+  background-color: #57e3f7;
 
-    font-family: "Palanquin Dark", serif;
+  font-family: "Palanquin Dark", serif;
 }
 
 .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    z-index: 999; /* Показываем поверх всего */
-    padding: 16px 8px;
-    padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 128; /* Показываем поверх всего */
+  padding: 16px 8px;
+  padding-left: 16px;
 
-    border: 5px solid #38b1c2;
-    border-radius: 20px;
-    background-color: #fff;
+  border: 5px solid #38b1c2;
+  border-radius: 20px;
+  background-color: #fff;
 
-    position: fixed;
-    top: 50%;
-    left: -20px;
-    transform: translate(0, -50%);
+  position: fixed;
+  top: 50%;
+  left: -20px;
+  transform: translate(0, -50%);
 }
 
 .menu > button {
-    width: 94px;
-    height: 78px;
-    border: 3px solid #969695;
-    border-radius: 20px;
-    background-color: #fff;
-    font-family: "Palanquin Dark", serif;
-    font-size: 64px;
-    font-weight: 400;
+  width: 94px;
+  height: 78px;
+  border: 3px solid #969695;
+  border-radius: 20px;
+  background-color: #fff;
+  font-family: "Palanquin Dark", serif;
+  font-size: 64px;
+  font-weight: 400;
 }
 
 .menu > button.completed {
-    background-color: #daa4fa;
+  background-color: #daa4fa;
 }
 
 .menu > button.active {
-    background-color: #b480d3;
+  background-color: #b480d3;
 }
 
 .menu > button > div {
-    position: relative;
-    bottom: 33px; /*18px - рамка + шрифт, 15 px - отступ по макету*/
+  position: relative;
+  bottom: 33px; /*18px - рамка + шрифт, 15 px - отступ по макету*/
+}
+
+.game-board {
+  position: absolute;
+  width: 90vw;
+  height: 90vh;
+  z-index: 64;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 5px solid #36b1c2;
+  border-radius: 20px;
+
+  display: flex;
+}
+
+.cross {
+  position: absolute;
+  right: 22.5px;
+  bottom: 25px;
+  z-index: 256;
 }
