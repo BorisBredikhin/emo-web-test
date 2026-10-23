@@ -17,7 +17,7 @@ $('#app').appendChild(gameBoard)
 function setLevel(level) {
     gameState.level = {
         question: QUESTIONS[level],
-        id: 1
+        id: level
     }
 
     $$('.menu > button').forEach(button => {
