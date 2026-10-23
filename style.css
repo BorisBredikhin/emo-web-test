@@ -71,3 +71,16 @@ body {
   bottom: 25px;
   z-index: 256;
 }
+
+.game-board > div:nth-child(1) {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.question-image {
+  width: 100%;
+  height: fit-content;
+}

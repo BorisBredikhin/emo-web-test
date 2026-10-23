@@ -1,24 +1,50 @@
 const gameState = {
     level: undefined,
+    questions: shuffle(QUESTIONS)
 }
 
-const question = document.createElement('div')
+function createAnswerInput(){
+    const inputWrapper = document.createElement('div')
+    inputWrapper.classList.add('input-wrapper')
+    const input = document.createElement('input')
+    inputWrapper.appendChild(input)
 
-const questionImg = document.createElement('img')
-question.appendChild(questionImg)
+    // валидация и нормализация ввода
+    input.addEventListener('keydown', function(event){
+        if (!validateKey(event.key)) {
+            event.preventDefault()
+        }
+    })
 
-const gameBoard = document.createElement('div')
-gameBoard.classList.add('game-board')
+    return inputWrapper
+}
 
-gameBoard.appendChild(question)
+function createGameBoard() {
+    const question = document.createElement('div')
+
+    const questionImg = document.createElement('img')
+    question.appendChild(questionImg)
+    questionImg.classList.add('question-image')
+
+    const questionLabel = document.createElement('label')
+    question.appendChild(questionLabel)
+    questionLabel.classList.add('question-label')
+
+    question.appendChild(createAnswerInput())
+
+    const gameBoard = document.createElement('div')
+    gameBoard.classList.add('game-board')
+
+    gameBoard.appendChild(question)
+    return { gameBoard, questionImg, questionLabel }
+}
+
+const { gameBoard, questionImg, questionLabel } = createGameBoard()
 
 $('#app').appendChild(gameBoard)
 
 function setLevel(level) {
-    gameState.level = {
-        question: QUESTIONS[level],
-        id: level
-    }
+    gameState.level = gameState.questions[level]
 
     $$('.menu > button').forEach(button => {
         const buttonLevel = parseInt(button.innerText)
@@ -33,6 +59,9 @@ function setLevel(level) {
             button.classList.remove('active')
         }
     })
+
+    questionImg.src = `imgs/${gameState.level.id}.png`
+    questionLabel.innerText = `Напечатай: ${gameState.level.label}`
 }
 
 setLevel(1)

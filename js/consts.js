@@ -1,22 +1,6 @@
-const QUESTIONS = [
-    {
-        id: 1,
-        label: 'зелень'
-    },
-    {
-        id: 2,
-        label: 'ашан'
-    },
-    {
-        id: 3,
-        label: 'каток'
-    },
-    {
-        id: 4,
-        label: 'каток'
-    },
-    {
-        id: 5,
-        label: 'тюмень'
-    }
-]
+const QUESTIONS = (() => {
+    const xhr = new XMLHttpRequest()
+    xhr.open("GET", "questions.json", false)
+    xhr.send()
+    return JSON.parse(xhr.responseText)
+})()
