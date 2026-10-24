@@ -9,6 +9,6 @@ function shuffle(array) {
   return array;
 }
 
-function validateKey(key){
-    return key.toLowerCase().match(/[а-яё]/)
+function validateKey(key) {
+  return key.toLowerCase().match(/[а-яё]/);
 }
