@@ -10,5 +10,5 @@ function shuffle(array) {
 }
 
 function validateKey(key) {
-  return key.length > 1 || key.toLowerCase().match(/[а-яё]/);
+  return key.length > 1 || key.toLowerCase().match(/[а-яё]| |-/);
 }
