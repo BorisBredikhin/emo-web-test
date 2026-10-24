@@ -54,7 +54,8 @@ body {
   bottom: 33px; /*18px - рамка + шрифт, 15 px - отступ по макету*/
 }
 
-.game-board {
+.game-board,
+table {
   position: absolute;
   width: 90vw;
   height: 90vh;
@@ -65,6 +66,9 @@ body {
   background-color: #fff;
   border: 5px solid #36b1c2;
   border-radius: 20px;
+}
+
+.game-board {
   padding: 40px;
 
   display: flex;
@@ -130,7 +134,33 @@ body {
   border: 3px solid #000;
   border-radius: 20px;
   background-color: #fff;
-  padding: 17px 39px 27;
+  padding: 17px 39px 27px;
   font-family: Inter;
   font-size: 55px;
+}
+
+.vowel {
+  color: #ee2f2f;
+}
+
+table {
+  font-family: "Inter";
+  font-size: 2rem;
+  font-weight: 400;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid black;
+  text-align: center;
+}
+
+td img {
+  width: 120px;
+  max-width: 10vw;
+}
+
+.result-mark {
+  width: 69px;
 }

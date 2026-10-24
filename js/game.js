@@ -1,19 +1,23 @@
 class Game {
   constructor(gameContainer) {
+    this.gameContainer = gameContainer;
+  }
+  setup() {
     const { gameBoard, questionImg, questionLabel } = this.createGameBoard();
     this.gameBoard = gameBoard;
     this.questionImg = questionImg;
     this.questionLabel = questionLabel;
 
-    gameContainer.appendChild(gameBoard);
-
+    this.gameContainer.innerHTML = "";
+    this.gameContainer.appendChild(gameBoard);
+  }
+  start() {
+    this.setup();
     this.cross = new CrossButton();
     this.cross.setup(this, $("#app"));
 
     this.menu = new Menu(this);
     this.menu.setup($("#app"));
-  }
-  start() {
     this.gameState = {
       level: 0,
       questions: shuffle(QUESTIONS),
@@ -72,6 +76,11 @@ class Game {
   }
 
   setLevel(level) {
+    if (level == this.gameState.questions.length) {
+      this.showResults();
+      return;
+    }
+
     this.gameState.level = level;
 
     this.menu.updateLevel(this.gameState.level);
@@ -98,6 +107,53 @@ class Game {
     this.setInputButtonEnabled(false);
     this.input.value = this.gameState.results[this.gameState.level + 1] || "";
     this.setLevel(this.gameState.level + 1);
+  }
+
+  showResults() {
+    $("#app").innerHTML = ``;
+
+    const resultTable = document.createElement("table");
+    $("#app").appendChild(resultTable);
+
+    const tableHeader = document.createElement("tr");
+    resultTable.appendChild(tableHeader);
+
+    for (const title of [
+      "#",
+      "картинка",
+      "правильный ответ",
+      "твой ответ",
+      "результат",
+    ]) {
+      const cell = document.createElement("td");
+      cell.appendChild(markText(title));
+      tableHeader.appendChild(cell);
+    }
+
+    for (let i = 0; i < this.gameState.questions.length; i++) {
+      const question = this.gameState.questions[i];
+      const result = this.gameState.results[i] || "";
+      const tr = document.createElement("tr");
+      resultTable.appendChild(tr);
+
+      const label = markText(question.label);
+      const resultMarked = markText(result);
+
+      const correct =
+        result.trim().toLowerCase() == question.label.trim().toLowerCase();
+
+      tr.innerHTML = `
+      <tr>
+        <td>${i + 1}</td>
+        <td><img src="imgs/${question.id}.png"></td>
+        <td>${label.outerHTML}</td>
+        <td>${resultMarked.outerHTML}</td>
+        <td><img class="result-mark" src="imgs/${correct ? "check-green" : "cross"}.svg"></td>
+      </tr>
+      `;
+    }
+
+    this.cross.setup(this, $("#app"), "results");
   }
 }
 

@@ -4,3 +4,5 @@ const QUESTIONS = (() => {
   xhr.send();
   return JSON.parse(xhr.responseText);
 })();
+
+const VOWELS = "УЕЁЭОАЫЯИЮ";

@@ -12,3 +12,16 @@ function shuffle(array) {
 function validateKey(key) {
   return key.length > 1 || key.toLowerCase().match(/[а-яё]| |-/);
 }
+
+function markText(text) {
+  result = document.createElement("div");
+  for (const letter of text.toUpperCase()) {
+    const span = document.createElement("span");
+    span.innerText = letter;
+    if (VOWELS.includes(letter)) {
+      span.classList.add("vowel");
+    }
+    result.appendChild(span);
+  }
+  return result;
+}
