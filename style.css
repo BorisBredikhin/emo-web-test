@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Palanquin+Dark:wght@400;500;600;700&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -61,6 +65,7 @@ body {
   background-color: #fff;
   border: 5px solid #36b1c2;
   border-radius: 20px;
+  padding: 40px;
 
   display: flex;
 }
@@ -74,19 +79,58 @@ body {
 
 .game-board > div:nth-child(1) {
   width: fit-content;
+  max-width: 100%;
+  min-width: 0;
   height: fit-content;
   display: flex;
   flex-direction: column;
   margin: auto;
+  gap: 20px;
 }
 
 .question-image {
-  width: 100%;
-  height: fit-content;
+  display: flex;
+  justify-content: center;
+}
+
+.question-image img {
+  width: auto;
+  height: auto;
+  max-width: 60vw;
+  max-height: 60vh;
 }
 
 .question-label {
   font-family: Inter;
   font-weight: 400;
   font-size: 34.42px;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+}
+
+.input-wrapper > button {
+  border: 3px solid #000;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 13px;
+  aspect-ratio: calc(114 / 110);
+}
+
+.input-wrapper > button img {
+  width: 70px;
+}
+
+#user-input {
+  flex: 1;
+  min-width: 0;
+  border: 3px solid #000;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 17px 39px 27;
+  font-family: Inter;
+  font-size: 55px;
 }

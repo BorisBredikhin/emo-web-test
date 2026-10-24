@@ -10,11 +10,18 @@ function createAnswerInput() {
   input.id = "user-input";
   inputWrapper.appendChild(input);
 
+  const inputButton = document.createElement("button");
+  inputWrapper.appendChild(inputButton);
+  inputButton.innerHTML = '<img src="imgs/check.svg">';
+
   // валидация и нормализация ввода
   input.addEventListener("keydown", function (event) {
     if (!validateKey(event.key)) {
       event.preventDefault();
     }
+  });
+  input.addEventListener("keyup", function () {
+    inputButton.innerHTML = `<img src="imgs/check${input.value.length > 0 ? "-green" : ""}.svg">`;
   });
 
   return inputWrapper;
@@ -23,9 +30,12 @@ function createAnswerInput() {
 function createGameBoard() {
   const question = document.createElement("div");
 
+  const questionImgContainer = document.createElement("div");
+  question.appendChild(questionImgContainer);
+  questionImgContainer.classList.add("question-image");
+
   const questionImg = document.createElement("img");
-  question.appendChild(questionImg);
-  questionImg.classList.add("question-image");
+  questionImgContainer.appendChild(questionImg);
 
   const questionLabel = document.createElement("label");
   questionLabel.htmlFor = "user-input";
