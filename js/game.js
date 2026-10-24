@@ -47,6 +47,7 @@ function createGameBoard() {
   questionImgContainer.classList.add("question-image");
 
   const questionImg = document.createElement("img");
+  questionImg.draggable = false;
   questionImgContainer.appendChild(questionImg);
 
   const questionLabel = document.createElement("label");
