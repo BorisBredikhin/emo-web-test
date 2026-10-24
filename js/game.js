@@ -3,6 +3,7 @@ class Game {
     this.gameState = {
       level: 0,
       questions: shuffle(QUESTIONS),
+      results: QUESTIONS.map(() => undefined), // ответы. undefined - отсутствие ответа. Не использую пустой массив для упрощения обработки.
     };
 
     const { gameBoard, questionImg, questionLabel } = this.createGameBoard();
@@ -19,7 +20,7 @@ class Game {
     this.menu.setup($("#app"));
   }
   start() {
-    this.setLevel(1);
+    this.setLevel(0);
   }
   createAnswerInput(parent) {
     const inputWrapper = document.createElement("div");
@@ -73,22 +74,13 @@ class Game {
   setLevel(level) {
     this.gameState.level = level;
 
-    $$(".menu > button").forEach((button) => {
-      const buttonLevel = parseInt(button.innerText);
-      if (buttonLevel < level) {
-        button.classList.add("completed");
-        button.classList.remove("active");
-      } else if (buttonLevel === level) {
-        button.classList.remove("completed");
-        button.classList.add("active");
-      } else {
-        button.classList.remove("completed");
-        button.classList.remove("active");
-      }
-    });
+    this.menu.updateLevel(this.gameState.level);
 
     this.questionImg.src = `imgs/${this.gameState.questions[this.gameState.level].id}.png`;
     this.questionLabel.innerText = `Напечатай: ${this.gameState.questions[this.gameState.level].label}`;
+
+    this.input.value = this.gameState.results[this.gameState.level] || "";
+    this.setInputButtonEnabled(this.input.value.length > 0);
   }
 
   setInputButtonEnabled(enabled) {
@@ -102,8 +94,9 @@ class Game {
   }
 
   advanceLevel() {
+    this.gameState.results[this.gameState.level] = this.input.value;
     this.setInputButtonEnabled(false);
-    this.input.value = "";
+    this.input.value = this.gameState.results[this.gameState.level + 1] || "";
     this.setLevel(this.gameState.level + 1);
   }
 }
