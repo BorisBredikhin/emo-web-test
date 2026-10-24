@@ -101,7 +101,7 @@ table {
   width: auto;
   height: auto;
   max-width: 60vw;
-  max-height: 60vh;
+  max-height: 40vh;
 }
 
 .question-label {
