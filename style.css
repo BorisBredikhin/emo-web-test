@@ -31,13 +31,13 @@ body {
 }
 
 .menu > button {
-  width: 94px;
-  height: 78px;
+  width: 6rem;
+  height: 5rem;
   border: 3px solid #969695;
   border-radius: 20px;
   background-color: #fff;
   font-family: "Palanquin Dark", serif;
-  font-size: 64px;
+  font-size: 4rem;
   font-weight: 400;
 }
 
@@ -51,7 +51,7 @@ body {
 
 .menu > button > div {
   position: relative;
-  bottom: 33px; /*18px - рамка + шрифт, 15 px - отступ по макету*/
+  bottom: 2rem; /*18px - рамка + шрифт, 15 px - отступ по макету*/
 }
 
 .game-board,
@@ -69,7 +69,7 @@ table {
 }
 
 .game-board {
-  padding: 40px;
+  padding: 3rem;
 
   display: flex;
 }
@@ -107,7 +107,7 @@ table {
 .question-label {
   font-family: Inter;
   font-weight: 400;
-  font-size: 34.42px;
+  font-size: 2rem;
 }
 
 .input-wrapper {
@@ -136,7 +136,7 @@ table {
   background-color: #fff;
   padding: 17px 39px 27px;
   font-family: Inter;
-  font-size: 55px;
+  font-size: 3.5rem;
 }
 
 .vowel {
