@@ -1,5 +1,5 @@
 const gameState = {
-  level: undefined,
+  level: 0,
   questions: shuffle(QUESTIONS),
 };
 
@@ -12,7 +12,13 @@ function createAnswerInput() {
 
   const inputButton = document.createElement("button");
   inputWrapper.appendChild(inputButton);
-  inputButton.innerHTML = '<img src="imgs/check.svg">';
+
+  function setInputButtonEnabled(enabled) {
+    inputButton.innerHTML = `<img src="imgs/check${enabled ? "-green" : ""}.svg">`;
+    inputButton.disabled = !enabled;
+  }
+
+  setInputButtonEnabled(false);
 
   // валидация и нормализация ввода
   input.addEventListener("keydown", function (event) {
@@ -21,7 +27,13 @@ function createAnswerInput() {
     }
   });
   input.addEventListener("keyup", function () {
-    inputButton.innerHTML = `<img src="imgs/check${input.value.length > 0 ? "-green" : ""}.svg">`;
+    const inputContainsText = input.value.length > 0;
+    setInputButtonEnabled(inputContainsText);
+  });
+  inputButton.addEventListener("click", function () {
+    setInputButtonEnabled(false);
+    input.value = "";
+    setLevel(gameState.level + 1);
   });
 
   return inputWrapper;
@@ -56,7 +68,7 @@ const { gameBoard, questionImg, questionLabel } = createGameBoard();
 $("#app").appendChild(gameBoard);
 
 function setLevel(level) {
-  gameState.level = gameState.questions[level];
+  gameState.level = level;
 
   $$(".menu > button").forEach((button) => {
     const buttonLevel = parseInt(button.innerText);
@@ -72,8 +84,8 @@ function setLevel(level) {
     }
   });
 
-  questionImg.src = `imgs/${gameState.level.id}.png`;
-  questionLabel.innerText = `Напечатай: ${gameState.level.label}`;
+  questionImg.src = `imgs/${gameState.questions[gameState.level].id}.png`;
+  questionLabel.innerText = `Напечатай: ${gameState.questions[gameState.level].label}`;
 }
 
 setLevel(1);
