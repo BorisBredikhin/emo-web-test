@@ -25,7 +25,7 @@ class Menu {
   }
 
   updateLevel(level) {
-    $$(".menu > button").forEach((button) => {
+    this.buttons.forEach((button) => {
       const buttonLevel = parseInt(button.innerText) - 1;
       if (this.game.gameState.results[buttonLevel]) {
         button.classList.add("completed");
@@ -36,6 +36,13 @@ class Menu {
       } else {
         button.classList.remove("active");
       }
+    });
+  }
+
+  restart() {
+    this.buttons.forEach((b) => {
+      b.classList.remove("completed");
+      b.classList.add("active");
     });
   }
 

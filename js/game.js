@@ -1,11 +1,5 @@
 class Game {
   constructor(gameContainer) {
-    this.gameState = {
-      level: 0,
-      questions: shuffle(QUESTIONS),
-      results: QUESTIONS.map(() => undefined), // ответы. undefined - отсутствие ответа. Не использую пустой массив для упрощения обработки.
-    };
-
     const { gameBoard, questionImg, questionLabel } = this.createGameBoard();
     this.gameBoard = gameBoard;
     this.questionImg = questionImg;
@@ -20,6 +14,12 @@ class Game {
     this.menu.setup($("#app"));
   }
   start() {
+    this.gameState = {
+      level: 0,
+      questions: shuffle(QUESTIONS),
+      results: QUESTIONS.map(() => undefined), // ответы. undefined - отсутствие ответа. Не использую пустой массив для упрощения обработки.
+    };
+    this.menu.restart();
     this.setLevel(0);
   }
   createAnswerInput(parent) {
